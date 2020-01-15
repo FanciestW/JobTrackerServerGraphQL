@@ -1,0 +1,25 @@
+{
+  "name": "jobtrackerservergraphql",
+  "version": "1.0.0",
+  "description": "JobTrackerServer version that uses GraphQL instead of REST.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FanciestW/JobTrackerServerGraphQL.git"
+  },
+  "author": "FanciestW",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FanciestW/JobTrackerServerGraphQL/issues"
+  },
+  "homepage": "https://github.com/FanciestW/JobTrackerServerGraphQL#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8"
+  }
+}
