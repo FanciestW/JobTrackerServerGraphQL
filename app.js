@@ -1,14 +1,8 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
+const schema = require('./schema');
 const mongoose = require('mongoose');
-
-// Construct a schema, using GraphQL Schema Language
-const schema = buildSchema(`
-    type Query {
-        hello: String
-    }
-`);
 
 // The root provides a resolver function for each API endpoint
 const root = {
