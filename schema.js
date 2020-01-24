@@ -1,5 +1,7 @@
+const { User } = require('./models/User');
+
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLSchema } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema, GraphQLList } = graphql;
 
 var fakeData = [
     {
@@ -40,15 +42,13 @@ const RootQuery = new GraphQLObjectType({
             // Arguments passed while making the query.
             args: {
                 uid: { type: GraphQLID },
-                firstName: { type: GraphQLString },
-                lastName: { type: GraphQLString },
                 email: { type: GraphQLString },
             },
-            resolve(parent, args) {
+            resolve: async (parent, args) => {
                 // Here we define how to get data from database source.
 
                 // this will return the book with id passed in argument.
-                return fakeData.find((item) => { return item.uid == args.uid });
+                return await User.findOne({ $or: [{ email: args.email }, { uid: args.uid }] });
             }
         }
     }
