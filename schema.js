@@ -3,25 +3,6 @@ const { User } = require('./models/User');
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema, GraphQLList } = graphql;
 
-var fakeData = [
-    {
-        uid: '0001',
-        firstName: 'William',
-        lastName: 'Lin',
-        email: 'wlin26@yahoo.com',
-        passwordDigest: 'Password',
-        createdAt: Date.now,
-    },
-    {
-        uid: '0002',
-        firstName: 'Alyson',
-        lastName: 'Shaw',
-        email: 'ashaw2512@gmail.com',
-        passwordDigest: 'Password',
-        createdAt: Date.now,
-    }
-];
-
 const UserType = new GraphQLObjectType({
     name: 'User',
     fields: () => ({
