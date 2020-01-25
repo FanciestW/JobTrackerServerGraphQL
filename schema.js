@@ -38,9 +38,11 @@ const RootQuery = new GraphQLObjectType({
                 firstName: { type: GraphQLString },
                 lastName: { type: GraphQLString },
             },
-            resolve: async (parent, args) => {
+            resolve(parent, args) {
                 if ('firstName' in args && 'lastName' in args) {
                     return User.find({ $and: [{ firstName: args.firstName }, { lastName: args.lastName }] });
+                } else if (!('firstName' in args) && !('lastName' in args)) {
+                    return User.find({});                    
                 } else {
                     return User.find({ $or: [{ firstName: args.firstName }, { lastName: args.lastName }] });
                 }
