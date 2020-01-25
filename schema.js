@@ -11,7 +11,7 @@ const UserType = new GraphQLObjectType({
         lastName: { type: GraphQLString },
         email: { type: GraphQLString },
         passwordDigest: { type: GraphQLString },
-        createAt: { type: GraphQLString },
+        createdAt: { type: GraphQLString },
     })
 });
 
@@ -30,6 +30,20 @@ const RootQuery = new GraphQLObjectType({
 
                 // this will return the book with id passed in argument.
                 return await User.findOne({ $or: [{ email: args.email }, { uid: args.uid }] });
+            }
+        },
+        users: {
+            type: GraphQLList(UserType),
+            args: {
+                firstName: { type: GraphQLString },
+                lastName: { type: GraphQLString },
+            },
+            resolve: async (parent, args) => {
+                if ('firstName' in args && 'lastName' in args) {
+                    return User.find({ $and: [{ firstName: args.firstName }, { lastName: args.lastName }] });
+                } else {
+                    return User.find({ $or: [{ firstName: args.firstName }, { lastName: args.lastName }] });
+                }
             }
         }
     }
